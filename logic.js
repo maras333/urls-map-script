@@ -6,7 +6,7 @@ module.exports = {
     });
     return filteredUrls;
   },
-  // logic to redirections
+  // logic to process redirections
   redirectUrls: (urls, mappings) => {
     const https = "https://";
     let redirections = [];

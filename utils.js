@@ -46,7 +46,6 @@ module.exports = {
           .on("end", () => {
             cb({urlsArray, excludedUrlsArray});
             return; 
-            // TODO: check if urls data contains excluded urls
             // TODO: write func for checking patterns and save proper replacings to a new file
           });
       });
@@ -54,7 +53,5 @@ module.exports = {
       console.log(e);
     }
 
-  },
-
-	compose: (...fns) => stream => fns.reduce((t, fn) => t.pipe(fn), stream)
+  }
 };

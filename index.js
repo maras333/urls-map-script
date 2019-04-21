@@ -1,7 +1,7 @@
 const csvtojson = require("csvtojson");
 const csv = require("fast-csv");
 const utils = require("./utils");
-const { excludeNativeUrls } = require("./logic");
+const { excludeNativeUrls, redirectUrls } = require("./logic");
 
 const args = process.argv.slice(2);
 const urls = args[0];
@@ -20,7 +20,8 @@ const main = async () => {
         urlsArrays.urlsArray,
         urlsArrays.excludedUrlsArray
       );
-      console.log(finalUrls.length);
+      let newUrls = redirectUrls(finalUrls, mappingsJson);
+      console.log(newUrls);
     });
   } catch (e) {
     console.log(e);

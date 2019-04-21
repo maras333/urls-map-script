@@ -1,5 +1,4 @@
 const csvtojson = require("csvtojson");
-const csv = require("fast-csv");
 const utils = require("./utils");
 const { excludeNativeUrls, redirectUrls } = require("./logic");
 
@@ -21,7 +20,8 @@ const main = async () => {
         urlsArrays.excludedUrlsArray
       );
       let newUrls = redirectUrls(finalUrls, mappingsJson);
-      console.log(newUrls);
+      // writing to file redirections.csv
+      utils.writeRedirectionsToFile(newUrls);
     });
   } catch (e) {
     console.log(e);

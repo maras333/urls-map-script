@@ -6,23 +6,22 @@ module.exports = {
     });
     return filteredUrls;
   },
-
+  // logic to redirections
   redirectUrls: (urls, mappings) => {
-    // 1. take first url
-    // 2. find matching to RegEx
-    // 3. replace old url with new one
-    // 4. create file with new replacings
-    const https = 'https://'
+    const https = "https://";
     let redirections = [];
     for (let url of urls) {
-      let urlStr, newUrl;
+      let urlStrOld, urlStrNew, newUrl;
       for (let mapping of mappings) {
+        let tempArr = [];
         if (url.includes(mapping.old)) {
           newUrl = url
-            .replace(new RegExp(mapping.old, "g"), mapping.new)
+            .replace(new RegExp(mapping.old + ".*", "g"), mapping.new)
             .replace(new RegExp("moto.onet.pl", "g"), "auto-swiat.pl");
-          urlStr = https + url + ";" + https + newUrl + "/301";
-          redirections.push(urlStr);
+          urlStrOld = https + url;
+          urlStrNew = https + newUrl + "/301";
+          tempArr.push(urlStrOld, urlStrNew);
+          redirections.push(tempArr);
         }
       }
     }

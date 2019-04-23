@@ -61,8 +61,10 @@ module.exports = {
     try {
       csv
         .writeToPath("redirections.csv", redirectionsArr, {
-          headers: false,
-          delimiter: ";"
+          headers: true,
+          quoteHeaders: false,
+          quoteColumns: true,
+          delimiter: ","
         })
         .on("finish", function() {
           console.log("done!");
